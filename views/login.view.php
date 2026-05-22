@@ -1,131 +1,61 @@
-<div class='mt-6 grid grid-cols-2 gap-2'>
+<div class="grid grid-cols-2">
 
-    <!-- LOGIN -->
-    <div class='border border-stone-700 rounded'>
-
-        <h1 class='border-b border-stone-700 text-stone-400 font-bold px-4 py-2'>
-            Login
-        </h1>
-
-        <form class='p-4 space-y-4' method="POST">
-
-            <?php if ($validacoes = flash()->get('validacoes_login')): ?>
-                <div class='border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold'>
-
-                    <ul>
-
-                        <li>Deu ruim</li>
-
-                        <?php foreach ($validacoes as $validacao) : ?>
-
-                            <li> <?= $validacao ?></li>
-                        <?php endforeach; ?>
-
-                    </ul>
-                </div>
-            <?php endif; ?>
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Email</label>
-                <input
-                    type="email"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="email"
-                     />
+    <div class="hero min-h-screen flex ml-40">
+        <div class="hero-content">
+            <div>
+                <p class="py-2 text-xl -mg-20">
+                    Bemn vindo ao
+                </p>
+                <h1 class="text-6xl font-bold">LockBox</h1>
+                <p class="pt-2 pb-4 text-xl">
+                    Onde você guarda <span class="italic">tudo</span> com segurança.
+                </p>
             </div>
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Senha</label>
-                <input
-                    type="password"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="senha"
-                     />
-            </div>
-
-            <button
-                type="submit"
-                class='border-stone-800 bg-stone-900 text-stone-400 px-4 py-1 rounded-md border-2 hover:bg-stone-800'>
-                Logar
-            </button>
-
-        </form>
+        </div>
     </div>
+    <div class="bg-white hero mr-40 min-h-screen text-black">
+        <div class="hero-content -mt-20">
+            <form method="POST" action="/login">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Faça o seu login</div>
+                        <label class="form-control">
 
-    <!-- REGISTRO -->
-    <div class='border border-stone-700 rounded'>
+                            <div class="label">
 
-        <h1 class='border-b border-stone-700 text-stone-400 font-bold px-4 py-2'>
-            Registro
-        </h1>
+                                <span class="label-text text-black">Email</span>
 
-        <form class='p-4 space-y-4' method="POST" action="/registrar">
+                            </div>
 
-            <?php if ($validacoes = flash()->get('validacoes_registrar')): ?>
-                <div class='border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold'>
+                            <input type="text" class="input input-bordered w-full max-w-xs bg-white" />
 
-                    <ul>
+                            <label class="form-control">
 
-                        <li>Deu ruim</li>
+                                <div class="label">
 
-                        <?php foreach ($validacoes as $validacao) : ?>
+                                    <span class="label-text text-black">Senha</span>
 
-                            <li> <?= $validacao ?></li>
-                        <?php endforeach; ?>
+                                </div>
 
-                    </ul>
+                                <input type="password" class="input input-bordered w-full max-w-xs bg-white" />
 
 
+                            </label>
+                            <div class="card-actions">
+                                <button class="btn btn-primary btn-block">Login</button>
+                                <a href="/registrar" class="btn btn-link">Quero me registrar</a>
+                            </div>
+                    </div>
                 </div>
+            </form>
+        </div>
 
-            <?php endif; ?>
-
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Nome</label>
-                <input
-                    type="text"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="nome" />
-            </div>
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Email</label>
-                <input
-                    type="text"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="email" />
-            </div>
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Confirme seu Email</label>
-                <input
-                    type="text"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="email_confirmacao" />
-            </div>
-
-            <div class='flex flex-col'>
-                <label class='text-stone-400 mb-1'>Senha</label>
-                <input
-                    type="password"
-                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    name="senha" />
-            </div>
-
-            <button
-                type="reset"
-                class='border-stone-800 bg-stone-900 text-stone-400 px-4 py-1 rounded-md border-2 hover:bg-stone-800'>
-                Cancelar
-            </button>
-
-            <button
-                type="submit"
-                class='border-stone-800 bg-stone-900 text-stone-400 px-4 py-1 rounded-md border-2 hover:bg-stone-800'>
-                Registrar
-            </button>
-
-        </form>
     </div>
 
 </div>
+
+<fieldset class="fieldset">
+    <legend class="fieldset-legend">What is your name?</legend>
+    <input type="text" class="input" placeholder="Type here" />
+    <p class="label">Optional</p>
+</fieldset>

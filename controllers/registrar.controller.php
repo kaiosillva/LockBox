@@ -34,5 +34,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 }
 
-header('location: /login');
- exit();
+view('registrar');

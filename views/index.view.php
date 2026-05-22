@@ -1,20 +1,15 @@
-            <form class="w-full fex space-x-2 mt-6">
-
-                <input
-                    type="texte"
-                    class="border-stone-800 border-2 roudend-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
-                    placeholder="Pesquisar..."
-                    name="pesquisar" />
-
-                <button type="submit">🔎</button>
-
-            </form>
-
-            <section class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-                <?php foreach ($livros as $livro) {
-
-                    require 'partials/_livro.php';
-                } ?>
-
-            </section>
+<div class="hero min-h-screen flex mx-auto max-w-screen-lg">
+    <div class="hero-content">
+        <div>
+            <p class="py-2 text-xl">
+                Bemn vindo ao
+            </p>
+            <h1 class="text-6xl font-bold">LockBox</h1>
+            <p class="pt-2 pb-4 text-xl">
+                Onde você guarda <span class="italic">tudo</span> com segurança.
+            </p>
+            <a href="/login" class="btn btn-link">Login</a>
+            <a href="/registrar" class="btn btn-link">Registra</a>
+        </div>
+    </div>
+</div>
