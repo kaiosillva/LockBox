@@ -4,7 +4,7 @@
         <div class="hero-content">
             <div>
                 <p class="py-2 text-xl -mg-20">
-                    Bemn vindo ao
+                    Bem vindo ao
                 </p>
                 <h1 class="text-6xl font-bold">LockBox</h1>
                 <p class="pt-2 pb-4 text-xl">
@@ -16,41 +16,60 @@
     <div class="bg-white hero mr-40 min-h-screen text-black">
         <div class="hero-content -mt-20">
             <form method="POST" action="/login">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">Faça o seu login</div>
-                        <label class="form-control">
 
-                            <div class="label">
+                <?php $validacoes = flash()->get('validacoes');?>
 
-                                <span class="label-text text-black">Email</span>
+                <label class="form-control">
 
-                            </div>
+                    <div class="label">
 
-                            <input type="text" class="input input-bordered w-full max-w-xs bg-white" />
+                        <span class="label-text text-black">Email</span>
 
-                            <label class="form-control">
-
-                                <div class="label">
-
-                                    <span class="label-text text-black">Senha</span>
-
-                                </div>
-
-                                <input type="password" class="input input-bordered w-full max-w-xs bg-white" />
-
-
-                            </label>
-                            <div class="card-actions">
-                                <button class="btn btn-primary btn-block">Login</button>
-                                <a href="/registrar" class="btn btn-link">Quero me registrar</a>
-                            </div>
                     </div>
-                </div>
-            </form>
-        </div>
 
+                    <input
+                        type="text"
+                        name="email"
+                        class="input input-bordered w-full max-w-xs bg-white"
+                        value="<?= old("email"); ?>" />
+
+                    <?php if (isset($validacoes['email'])): ?>
+
+                        <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
+
+                    <?php endif ?>
+
+                    <label class="form-control">
+
+                        <div class="label">
+
+                            <span class="label-text text-black">Senha</span>
+
+                        </div>
+
+                        <input
+                            type="password"
+                            name="senha"
+                            class="input input-bordered w-full max-w-xs bg-white" 
+                            />
+                        <?php if (isset($validacoes['email'])): ?>
+
+                            <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
+
+                        <?php endif ?>
+
+
+                    </label>
+                    <div class="card-actions">
+                        <button class="btn btn-primary btn-block">Login</button>
+                        <a href="/registrar" class="btn btn-link">Quero me registrar</a>
+                    </div>
+        </div>
     </div>
+    </form>
+</div>
+
+</div>
 
 </div>
 

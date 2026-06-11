@@ -2,7 +2,6 @@
 
 function view($view, $data = [])
 {
-    
 
     foreach ($data as $key => $value) {
 
@@ -56,11 +55,23 @@ function config($chave = null)
 }
 
 
-function auth() {
-    if(! isset($_SESSION['auth'])) {
+function auth()
+{
+    if (! isset($_SESSION['auth'])) {
         return null;
     }
 
     return $_SESSION['auth'];
+}
 
+function old($campo)
+{
+
+    $post = $_POST;
+    
+
+    if (isset($post[$campo])) {
+    
+        return $post[$campo];
+    }
 }
