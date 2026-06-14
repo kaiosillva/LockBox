@@ -1,8 +1,13 @@
 <?php
 
+use Core\Database;
+use Core\Validacao;
+use App\Models\Usuario;
+
 // 1. Receber o formulário com email e senha
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    $database = new Database(config('database'));
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];

@@ -1,5 +1,10 @@
 <?php
 
+
+use Core\Database;
+use Core\Validacao;
+use App\Models\Usuario;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $validacao =  Validacao::validar([
