@@ -1,6 +1,5 @@
 <?php
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $validacao =  Validacao::validar([
@@ -10,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ], $_POST);
 
 
-    if($validacao->naoPassou('registrar')) {
+    if($validacao->naoPassou()) {
 
-        header('location: /login');
+        view('registrar');
 
         exit();
     }

@@ -1,5 +1,5 @@
+<?php $validacoes = flash()->get('validacoes'); ?>
 <div class="grid grid-cols-2">
-
     <div class="hero min-h-screen flex ml-40">
         <div class="hero-content">
             <div>
@@ -27,7 +27,12 @@
 
                             </div>
 
-                            <input type="text" class="input input-bordered w-full max-w-xs bg-white" />
+                            <input type="text" name="nome" class="input input-bordered w-full max-w-xs bg-white" value="<?= old("nome"); ?>"/>
+                            <?php if (isset($validacoes['nome'])): ?>
+
+                                <div class="label text-xs text-error"><?= $validacoes['nome'][0] ?></div>
+
+                            <?php endif ?>
 
                             <label class="form-control">
 
@@ -37,7 +42,12 @@
 
                                 </div>
 
-                                <input type="text" class="input input-bordered w-full max-w-xs bg-white" />
+                                <input type="text" name="email" class="input input-bordered w-full max-w-xs bg-white"  value="<?= old("email"); ?>" />
+                                <?php if (isset($validacoes['email'])): ?>
+
+                                    <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
+
+                                <?php endif ?>
 
                                 <label class="form-control">
 
@@ -47,7 +57,7 @@
 
                                     </div>
 
-                                    <input type="text" class="input input-bordered w-full max-w-xs bg-white" />
+                                    <input type="text" name="email_confirmacao" class="input input-bordered w-full max-w-xs bg-white"/>
 
                                     <label class="form-control">
 
@@ -58,8 +68,12 @@
 
                                         </div>
 
-                                        <input type="password" class="input input-bordered w-full max-w-xs bg-white" />
+                                        <input type="password" name="senha" class="input input-bordered w-full max-w-xs bg-white" />
+                                        <?php if (isset($validacoes['senha'])): ?>
 
+                                            <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
+
+                                        <?php endif ?>
 
                                     </label>
                                     <div class="card-actions">
