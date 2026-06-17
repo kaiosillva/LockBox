@@ -66,7 +66,7 @@
                                     class="input input-bordered w-full max-w-xs bg-white" />
                                 <?php if (isset($validacoes['email'])): ?>
 
-                                    <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
+                                    <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?? '' ?></div>
 
                                 <?php endif ?>
 

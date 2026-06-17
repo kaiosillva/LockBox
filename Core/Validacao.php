@@ -39,7 +39,6 @@ class Validacao
 
     private function required($campo, $valorDoCampo)
     {
-
         if (strlen($valorDoCampo) == 0) {
 
            $this->addError($campo, "O $campo é obrigatório");

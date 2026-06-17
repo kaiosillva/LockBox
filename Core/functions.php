@@ -1,6 +1,5 @@
 <?php
 
-use Core;
 
 function base_path($path) {
 
