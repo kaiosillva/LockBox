@@ -7,6 +7,11 @@ return __DIR__ .  '/../' . $path;
 
 }
 
+function redirect($uri) 
+{
+    header('Location: ' . $uri);
+}
+
 function view($view, $data = [])
 {
 
@@ -82,3 +87,5 @@ function old($campo)
         return $post[$campo];
     }
 }
+
+

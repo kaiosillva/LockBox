@@ -1,8 +1,12 @@
 <?php
 
 Use Core\Route;
+use App\Controllers\DashboardController;
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
+use App\Controllers\LogoutController;
+use App\Controllers\RegistrarController;
+
 
 (new Route())
 
@@ -12,16 +16,15 @@ use App\Controllers\LoginController;
 
 ->post('/login', [LoginController::class, 'login'])
 
+
+->get('/dashboard', DashboardController::class)
+
+
+->get('/logout', LogoutController::class)
+
+
+->get('/registrar', [RegistrarController::class, 'index'])
+
+->post('/registrar', [RegistrarController::class, 'register'])
+
 ->run();
-
-$controller = str_replace('/', '', parse_url($_SERVER["REQUEST_URI"])['path']);
-
-if (!$controller) $controller = 'index';
-
-
-if (!file_exists("../controllers/{$controller}.controller.php")) {
-
-    abort(404);
-};
-
-require "../controllers/{$controller}.controller.php";
