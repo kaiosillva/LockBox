@@ -5,7 +5,7 @@ return [
     'database' => [
 
         'drive' => 'sqlite',
-        'database' => '../database.sqlite'
+        'database' => base_path('database/database.sqlite')
     ]
 
 ];
