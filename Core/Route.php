@@ -6,19 +6,21 @@ class Route
 {
     public $routes = [];
 
-    public function addRoute($httpMethod, $uri, $controller)
+    public function addRoute($httpMethod, $uri, $controller, $middleware = null)
     {
         if (is_string($controller)) {
             $data = [
                 'Class' => $controller,
-                'method' => '__invoke'
+                'method' => '__invoke',
+                'middleware' => $middleware,
             ];
         }
 
         if (is_array($controller)) {
             $data = [
                 'Class' => $controller[0],
-                'method' => $controller[1]
+                'method' => $controller[1],
+                'middleware' => $middleware,
             ];
         }
 
@@ -29,20 +31,20 @@ class Route
         return $this;
     }
 
-    public function get($uri, $controller)
+    public function get($uri, $controller, $middleware = null)
     {
-        $this->addRoute('GET', $uri, $controller);
+        $this->addRoute('GET', $uri, $controller, $middleware);
         return $this;
     }
 
-    public function post($uri, $controller)
+    public function post($uri, $controller, $middleware = null)
     {
-        $this->addRoute('POST', $uri, $controller);
+        $this->addRoute('POST', $uri, $controller, $middleware);
         return $this;
     }
 
     public function run() {
-        $uri = '/' . str_replace('/', '', parse_url($_SERVER["REQUEST_URI"])['path']);
+        $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
         $httpMethod = $_SERVER['REQUEST_METHOD']; 
 
         if( ! isset( $this->routes[$httpMethod][$uri])) {
@@ -53,6 +55,12 @@ class Route
 
         $class = $routeInfo['Class'];
         $method = $routeInfo['method'];
+        $middleware = $routeInfo['middleware'];
+
+        if ($middleware) {
+            $m = new $middleware;
+            $m->handle();
+        }        
 
         $c = new $class; 
 

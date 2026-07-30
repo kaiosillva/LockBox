@@ -1,30 +1,34 @@
 <?php
 
 Use Core\Route;
-use App\Controllers\DashboardController;
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
+use App\Controllers\Notas;
 use App\Controllers\RegistrarController;
-
+use App\Middleware\AuthMiddleware;
+use App\Middleware\GuestMiddleware;
 
 (new Route())
 
-->get('/', IndexController::class)
+//não autenticado
 
-->get('/login', [LoginController::class, 'index'])
+->get('/', IndexController::class, GuestMiddleware::class)
 
-->post('/login', [LoginController::class, 'login'])
+->get('/login', [LoginController::class, 'index'], GuestMiddleware::class)
 
+->post('/login', [LoginController::class, 'login'], GuestMiddleware::class)
 
-->get('/dashboard', DashboardController::class)
+->get('/registrar', [RegistrarController::class, 'index'], GuestMiddleware::class)
 
+->post('/registrar', [RegistrarController::class, 'register'], GuestMiddleware::class)
 
-->get('/logout', LogoutController::class)
-
-
-->get('/registrar', [RegistrarController::class, 'index'])
-
-->post('/registrar', [RegistrarController::class, 'register'])
+//autenticado
+->get('/logout', LogoutController::class, AuthMiddleware::class)
+->get('/notas', Notas\IndexController::class, AuthMiddleware::class)
+->get('/notas/criar', [Notas\CriarController::class, 'index'], AuthMiddleware::class)
+->post('/notas/criar', [Notas\CriarController::class, 'store'], AuthMiddleware::class)
 
 ->run();
+
+

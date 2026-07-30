@@ -1,5 +1,7 @@
 <?php
 
+use Core\Request;
+
 
 function base_path($path) {
 
@@ -12,7 +14,7 @@ function redirect($uri)
     header('Location: ' . $uri);
 }
 
-function view($view, $data = [])
+function view($view, $data = [], $template = 'app')
 {
 
     foreach ($data as $key => $value) {
@@ -20,7 +22,7 @@ function view($view, $data = [])
         $$key = $value;
     }
 
-    require base_path("views/template/app.php");
+    require base_path("views/template/$template.php");
 }
 
 
@@ -87,5 +89,11 @@ function old($campo)
         return $post[$campo];
     }
 }
+
+    function request() {
+
+        return new Request;
+
+    }
 
 

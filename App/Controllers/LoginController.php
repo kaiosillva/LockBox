@@ -11,7 +11,7 @@ class LoginController
 
     public function index()
     {
-        return view('login');
+        return view('login', template: 'guest');
         die;
     }
 
@@ -30,7 +30,7 @@ class LoginController
         if ($validacao->naoPassou()) {
 
             //se deu errado
-            return view('/login');
+            return view('/login', template: 'guest');
         }
 
         //se deu certo
@@ -50,14 +50,14 @@ class LoginController
 
             flash()->push('validacoes', ['email' => ['Usuário ou senha estão incorretos!']]);
 
-            return view('login');
+            return view('login', template: 'guest');
         }
 
             $_SESSION['auth'] = $usuario;
 
             flash()->push('mensagem', 'Seja Bem Vindo ' . $usuario->nome . '!');
 
-            return redirect('/dashboard');
+            return redirect('/notas');
             
     }
 }

@@ -10,7 +10,7 @@ class RegistrarController
 
     public function index()
     {
-        return view('registrar');
+        return view('registrar', template: 'guest');
     }
 
     public function register()
@@ -26,7 +26,7 @@ class RegistrarController
 
             if ($validacao->naoPassou()) {
 
-                return view('registrar');
+                return view('registrar', template: 'guest');
             }
         }
 
