@@ -12,4 +12,18 @@ public function get ($key, $default = null, $prefixo = null) {
 
 }
 
+public function post ($key, $default = null, $prefixo = null) {
+
+    return isset($_POST[$key]) ? 
+    
+    ($prefixo ?: null) . $_POST[$key] : $default;
+
+}
+
+public function all () {
+
+    return $_POST;
+
+}
+
 }

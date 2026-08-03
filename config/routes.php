@@ -8,6 +8,7 @@ use App\Controllers\Notas;
 use App\Controllers\RegistrarController;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
+use Notas\AtualizarController;
 
 (new Route())
 
@@ -28,6 +29,7 @@ use App\Middleware\GuestMiddleware;
 ->get('/notas', Notas\IndexController::class, AuthMiddleware::class)
 ->get('/notas/criar', [Notas\CriarController::class, 'index'], AuthMiddleware::class)
 ->post('/notas/criar', [Notas\CriarController::class, 'store'], AuthMiddleware::class)
+->put('/nota', Notas\AtualizarController::class, AuthMiddleware::class)
 
 ->run();
 

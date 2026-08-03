@@ -43,11 +43,19 @@ class Route
         return $this;
     }
 
-    public function run() {
-        $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
-        $httpMethod = $_SERVER['REQUEST_METHOD']; 
+    public function put($uri, $controller, $middleware = null)
+    {
+        $this->addRoute('PUT', $uri, $controller, $middleware);
+        return $this;
+    }
 
-        if( ! isset( $this->routes[$httpMethod][$uri])) {
+    public function run()
+    {
+        $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
+        $httpMethod = request()->post('__method', $_SERVER['REQUEST_METHOD']);
+        
+
+        if (! isset($this->routes[$httpMethod][$uri])) {
             abort(404);
         }
 
@@ -60,11 +68,10 @@ class Route
         if ($middleware) {
             $m = new $middleware;
             $m->handle();
-        }        
+        }
 
-        $c = new $class; 
+        $c = new $class;
 
         $c->$method();
-
     }
 }
