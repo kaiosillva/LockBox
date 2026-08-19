@@ -11,13 +11,15 @@ class AtualizarController
 
     public function __invoke()
     {
-        $validacao = Validacao::validar([
 
-            'titulo' => ['required', 'min:3', 'max:255'],
-            'nota' => ['required'],
-            'id' => ['required'],
+        $validacao = Validacao::validar(
+            array_merge([
 
-        ], request()->all());
+                'titulo' => ['required', 'min:3', 'max:255'],
+                'id' => ['required'],
+            ], session()->get('mostrar') ? ['nota' => ['required']] : []),
+            request()->all()
+        );
 
         if ($validacao->naoPassou()) {
 
@@ -31,7 +33,7 @@ class AtualizarController
             request()->post('titulo'),
             request()->post('nota')
         );
-        
+
 
         flash()->push('mensagem', 'Registro atualizado com sucesso');
 

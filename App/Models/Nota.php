@@ -43,20 +43,36 @@ class Nota
         );
     }
 
-    public static function update ($id, $titulo, $nota) {
+    public static function update($id, $titulo, $nota)
+    {
         $bd = new Database(config('database'));
+
+        $set = "titulo = :titulo";
+        if ($nota) {
+
+            $set .= ", nota = :nota";
+        }
 
         $bd->query(
             query: "
             update notas 
-            set titulo = :titulo,
-            nota = :nota 
+            set $set
             where id = :id",
-            params: [
+            params: array_merge([
                 'id' => $id,
                 'titulo' => $titulo,
-                'nota' => $nota,
-            ]
+
+            ], $nota ? ['nota' => $nota] : [])
         );
+    }
+
+    public function nota()
+    {
+
+        if (session()->get('mostrar')) {
+            return $this->nota;
+        }
+
+        return str_repeat('*', rand(10, 100));
     }
 }
