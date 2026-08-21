@@ -9,9 +9,6 @@ class IndexController
 
     public function __invoke()
     {
-        $nota = secured_encrypt('kaio');
-
-        dd($nota, secured_decrypt($nota));
 
         $notas = Nota::all(
             request()->get('pesquisar')

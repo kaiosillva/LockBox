@@ -43,6 +43,21 @@ class Nota
         );
     }
 
+    public static function create($data) 
+    {
+    
+        $db = new Database(config('database'));
+
+        $db->query(
+            query: "insert into notas (usuario_id, titulo, nota, data_criacao, data_atualizacao) 
+            values (:usuario_id, :titulo, :nota, :data_criacao, :data_atualizacao)",
+            params: array_merge($data, [
+                'data_criacao' => date('Y-m-d H:i:s'),
+                'data_atualizacao' => date('Y-m-d H:i:s'),
+            ])
+        );
+    }
+
     public static function update($id, $titulo, $nota)
     {
         $bd = new Database(config('database'));
@@ -62,7 +77,7 @@ class Nota
                 'id' => $id,
                 'titulo' => $titulo,
 
-            ], $nota ? ['nota' => $nota] : [])
+            ], $nota ? ['nota' => encrypt($nota)] : [])
         );
     }
 
@@ -70,7 +85,7 @@ class Nota
     {
 
         if (session()->get('mostrar')) {
-            return $this->nota;
+            return decrypt($this->nota);
         }
 
         return str_repeat('*', rand(10, 100));
